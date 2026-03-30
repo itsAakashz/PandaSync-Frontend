@@ -674,7 +674,11 @@ function applyState(state) {
 // ══════════════════════════════════════════════════════
 //  SOCKET.IO
 // ══════════════════════════════════════════════════════
-const socket = io({ reconnectionDelay: 1000, reconnectionDelayMax: 5000 });
+const socket = io("https://pandasync-backend.onrender.com", {
+  transports: ["websocket", "polling"],
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 5000
+});
 
 socket.on('connect', () => {
   setPill('IDENTIFYING…', 'busy');
